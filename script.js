@@ -46,7 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'timings': 'Arnala Fort is open from 6:00 AM to 6:00 PM every day.',
             'tickets': 'Entry to the fort is free. However, boating charges may apply.',
             'location': 'Arnala Fort is located on an island off the coast of Arnala, Virar, Maharashtra.',
-            'history': 'Arnala Fort was built in the 15th century and has a rich history involving the Portuguese and Marathas.'
+            'history': 'Arnala Fort was built in 1516 by the Portuguese and later captured by the Marathas in 1737.',
+            'weather': 'The best time to visit is from November to February when the weather is pleasant.',
+            'how to reach': 'You can reach Arnala Fort by taking a local train to Virar and then a short boat ride.',
+            'activities': 'You can enjoy a guided tour, photography, and exploring the fort\'s ruins.',
+            'food': 'There are local eateries nearby offering Maharashtrian cuisine.',
+
         };
 
         message = message.toLowerCase();
@@ -55,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return responses[key];
             }
         }
-        return "I'm sorry, I don't have specific information about that. Please ask about timings, tickets, location, or history.";
+        return "I'm sorry, I don't have specific information about that. Please ask about timings, tickets, location,weather,how to reach,activites,food or history.";
     }
 
     // Event listeners
