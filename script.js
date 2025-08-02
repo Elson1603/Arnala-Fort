@@ -172,6 +172,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeQuizAndHunt();
 
     // Panorama functionality
+   // Panorama functionality with mobile touch support
+document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.panorama-container');
     const panorama = document.querySelector('.panorama');
 
@@ -181,24 +183,46 @@ document.addEventListener('DOMContentLoaded', function() {
         let originY = 0;
         let isDragging = false;
         let startX, startY;
+        
+        // Touch support variables
+        let isTouch = false;
+        let touchStartDistance = 0;
+        let touchStartScale = 1;
 
         function updateTransform() {
             panorama.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
         }
 
+        // Desktop mouse events
         container.addEventListener('wheel', (e) => {
             e.preventDefault();
             const zoomFactor = 0.1;
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calculate zoom center
+            const zoomPointX = (x - originX) / scale;
+            const zoomPointY = (y - originY) / scale;
+            
             scale += e.deltaY > 0 ? -zoomFactor : zoomFactor;
-            scale = Math.min(Math.max(0.5, scale), 5); // clamp zoom
+            scale = Math.min(Math.max(0.5, scale), 5);
+            
+            // Adjust origin to zoom at mouse position
+            originX = x - zoomPointX * scale;
+            originY = y - zoomPointY * scale;
+            
             updateTransform();
         });
 
+        // Mouse events
         container.addEventListener('mousedown', (e) => {
+            if (isTouch) return; // Ignore if touch is active
             isDragging = true;
             startX = e.clientX - originX;
             startY = e.clientY - originY;
             container.style.cursor = 'grabbing';
+            e.preventDefault();
         });
 
         container.addEventListener('mouseup', () => {
@@ -212,14 +236,81 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         container.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
+            if (!isDragging || isTouch) return;
             originX = e.clientX - startX;
             originY = e.clientY - startY;
             updateTransform();
         });
 
+        // Touch events for mobile
+        container.addEventListener('touchstart', (e) => {
+            isTouch = true;
+            e.preventDefault();
+            
+            if (e.touches.length === 1) {
+                // Single touch - pan
+                isDragging = true;
+                const touch = e.touches[0];
+                startX = touch.clientX - originX;
+                startY = touch.clientY - originY;
+            } else if (e.touches.length === 2) {
+                // Two fingers - zoom
+                isDragging = false;
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                touchStartDistance = Math.hypot(
+                    touch2.clientX - touch1.clientX,
+                    touch2.clientY - touch1.clientY
+                );
+                touchStartScale = scale;
+            }
+        });
+
+        container.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            
+            if (e.touches.length === 1 && isDragging) {
+                // Single touch - pan
+                const touch = e.touches[0];
+                originX = touch.clientX - startX;
+                originY = touch.clientY - startY;
+                updateTransform();
+            } else if (e.touches.length === 2) {
+                // Two fingers - zoom
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = Math.hypot(
+                    touch2.clientX - touch1.clientX,
+                    touch2.clientY - touch1.clientY
+                );
+                
+                const scaleChange = currentDistance / touchStartDistance;
+                scale = touchStartScale * scaleChange;
+                scale = Math.min(Math.max(0.5, scale), 5);
+                
+                // Calculate zoom center
+                const centerX = (touch1.clientX + touch2.clientX) / 2;
+                const centerY = (touch1.clientY + touch2.clientY) / 2;
+                const rect = container.getBoundingClientRect();
+                const x = centerX - rect.left;
+                const y = centerY - rect.top;
+                
+                updateTransform();
+            }
+        });
+
+        container.addEventListener('touchend', (e) => {
+            isDragging = false;
+            if (e.touches.length === 0) {
+                isTouch = false;
+            }
+        });
+
+        // Initialize
         updateTransform();
     }
+});
+
 });
 
 
