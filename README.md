@@ -15,7 +15,7 @@
   <a href="https://arnalafort.netlify.app">🌐 Live Demo</a> •
   <a href="#features">✨ Features</a> •
   <a href="#installation">⚡ Installation</a> •
-  <a href="#contributing">🤝 Contributing</a>
+  <a href="#contributing">🤝 Team Members</a>
 </p>
 
 ---
