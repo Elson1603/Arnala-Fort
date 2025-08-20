@@ -26,12 +26,9 @@
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
 - [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- [Team Members](#Members)
+
 
 ## 🏛️ About
 
@@ -99,3 +96,40 @@ cd arnala-fort-website
 
 2. **Open the project**
 open index.html directly in browser
+
+
+
+## 📸 Screenshots
+
+### Homepage
+![Homepage Screenshot]
+<img width="1919" height="1078" alt="Screenshot 2025-08-03 123308" src="https://github.com/user-attachments/assets/6ae74f4f-38ae-409f-8a72-37c718de841e" />
+
+### Historical Timeline
+![Timeline Screenshot]
+<img width="1917" height="1079" alt="Screenshot 2025-08-03 123428" src="https://github.com/user-attachments/assets/72e2b9fe-e1c0-40dc-805a-582fde8802aa" />
+
+### Virtual Tour
+![Virtual Tour Screenshot]
+<img width="1919" height="940" alt="Screenshot 2025-08-03 123349" src="https://github.com/user-attachments/assets/987f6cab-efc0-47fa-b74c-2e81a80c2837" />
+
+### Interactive Quiz
+![Quiz Screenshot]
+<img width="1918" height="919" alt="Screenshot 2025-08-03 123521" src="https://github.com/user-attachments/assets/6881baee-c079-45bc-bbc1-45fd35f30530" />
+
+### Chatbot 
+![Chatbot]
+<img width="525" height="791" alt="Screenshot 2025-08-03 123644" src="https://github.com/user-attachments/assets/d625176e-43b2-4bfb-9e64-7bb620679fbd" />
+
+### Mobile View
+![Mobile Screenshot]
+<img width="275" height="512" alt="Screenshot 2025-08-20 185158" src="https://github.com/user-attachments/assets/df12665a-47a2-4ded-b32d-5f78f54ea74e" />
+
+
+## 🤝 Team Members 
+
+1. Elson Machado
+2. Flint Dias
+3. Jills Rodrigues
+4. Liz Mascarenhas
+5. Sivon Fernandes 
